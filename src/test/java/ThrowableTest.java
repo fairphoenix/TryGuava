@@ -26,17 +26,6 @@ public class ThrowableTest {
                     }
                 };
 
-        Future<FileInputStream> fisFuture = executor.submit(fileCallable);
-
-        try {
-            fisFuture.get();
-        } catch (Exception e) {
-            Throwables.propagate(e);
-            throwables = Throwables.getCausalChain(e);
-        }
-
-        System.out.println(Throwables.getStackTraceAsString(throwables.get(0)));
-        System.out.println(Throwables.getStackTraceAsString(throwables.get(1)));
 
         assertThat(throwables.get(0).getClass().isAssignableFrom(ExecutionException.class),is(true));
         assertThat(throwables.get(1).getClass().isAssignableFrom(FileNotFoundException.class),is(true));
