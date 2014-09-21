@@ -31,7 +31,7 @@ public class ThrowableTest {
         try {
             fisFuture.get();
         } catch (Exception e) {
-//            Throwables.propagate(e);
+            Throwables.propagate(e);
             throwables = Throwables.getCausalChain(e);
         }
 
